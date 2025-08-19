@@ -1,0 +1,12 @@
+@import "tailwindcss";
+:root{
+  --heading-text-light: hsl(0, 0%, 10%);
+  --para-text-light: hsl(0, 0%, 30%);
+  --para-text-lighter: hsl(0, 0%, 50%);
+  --para-text-dark: hsl(0, 0%, 70%);
+  --heading-text-dark: hsl(0, 0%, 90%);
+  --bg-dark: hsl(0, 0%, 0%);
+  --bg-md-dark: hsl(0, 0%, 5%);
+  --bg-light-dark: hsl(0, 0%, 10%);
+  --red: hsl(0, 100%, 50%);
+}
