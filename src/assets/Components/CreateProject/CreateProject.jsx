@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Btn from "../NewProject/Btn";
 import CancelSave from "../CancelSave/CancelSave";
 import Input from "../Input/Input";
 import DateInput from "../Input/DateInput";
-
+import { useProjectContext } from "../../storage/ProjectContext";
   function ShowError({ref}){
     return(
       <dialog ref={ref}   className="
@@ -20,29 +20,37 @@ import DateInput from "../Input/DateInput";
       </dialog>
     )
   }
-const CreateProject = ({ saveNewProject, cancel }) => {
+
+
+const CreateProject = () => {
+  const {setView, saveProject} = useProjectContext();
   const titleRef = useRef(null);
   const descRef = useRef(null);
   const dateRef = useRef(null);
   const formRef = useRef(null);
-  const dialogRef = useRef(null)
+  const dialogRef = useRef(null);
+
+
   function reset(){
     formRef.current.reset();
-    cancel();
+    setView("none");
   }
   function handleSave(){
-    if(!titleRef.current.value || !descRef.current.value) {
+    const title = titleRef.current.value 
+    const desc = descRef.current.value;
+    if(!title || !desc) {
       dialogRef.current.showModal();
       return;
     }
+    
     const date = new Date(dateRef.current.value);
     const formattedDate = date.toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
       year: "numeric"
     });
-    
-    saveNewProject(titleRef.current.value, descRef.current.value , formattedDate);
+    const finalData = {title, desc, formattedDate, tasks:[]}
+    saveProject(finalData)
     formRef.current.reset();
   }
 

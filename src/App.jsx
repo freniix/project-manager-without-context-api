@@ -1,13 +1,13 @@
 import { StrictMode } from "react";
 import Projects from "./assets/Components/Projects/Projects";
-
-function App(){
-
-  return(
+import ProjectsContextProvider from "./assets/storage/ProjectContext";
+function  App() {
+  return (
     // <StrictMode>
-
-    <Projects/>
+    <ProjectsContextProvider>
+      <Projects />
+    </ProjectsContextProvider>
     /* </StrictMode> */
-  )
+  );
 }
 export default App;

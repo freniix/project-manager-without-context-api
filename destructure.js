@@ -5,8 +5,10 @@ const team = {
     { name: "Sara", skills: ["node", "db"] }
   ]
 };
+team
 
-const copyTeam = {
+
+const copyTeam = { 
      lead: {...team.lead},
      members: copy.members.map(item => ({
         ...item,
@@ -66,7 +68,7 @@ const copyLibrary = {
     books: library.books.map(bookDetail => ({
         ...bookDetail,
         authors: bookDetail.authors.map( obj => ({
-            ...obj, 
+            ...obj,
             socials: {...obj.socials}
         }))
     }))

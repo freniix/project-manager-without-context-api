@@ -2,13 +2,11 @@ import React from "react";
 import Btn from "../NewProject/Btn";
 import CancelSave from "../CancelSave/CancelSave";
 import Tasks from "../Tasks/Tasks";
+import { useProjectContext } from "../../storage/ProjectContext";
+const ShowProject = () => {
+  const {view: project ={}, deleteProject, setView} = useProjectContext();
+  const {title, desc, date} = project;
 
-const ShowProject = ({ project, removeTask, removeProject, cancel, addTask }) => {
-  const {title, desc, date, tasks} = project;
-  function remove(){
-    console.log("remove")
-    removeProject(title)
-  }
   return (
     <div className="px-10 py-4 ">
       <CancelSave>
@@ -16,13 +14,13 @@ const ShowProject = ({ project, removeTask, removeProject, cancel, addTask }) =>
           {title}
         </h2>
         <Btn
-          handleClick={remove}
+          handleClick={ ()=> deleteProject(title)}
           classname="bg-red-800 text-white px-5 py-2 hover:bg-red-700"
         >
-          Delete
+          Delete 
         </Btn>
         <Btn
-          handleClick={cancel}
+          handleClick={()=>setView("none")}
           classname="bg-zinc-900 text-white px-5 py-2 hover:bg-zinc-800"
         >
           Close
@@ -37,7 +35,7 @@ const ShowProject = ({ project, removeTask, removeProject, cancel, addTask }) =>
           <p className="text-zinc-800 text-xl ">{desc}</p>
         </div>
       </div>
-      <Tasks removeTask={removeTask} title={title} tasks={tasks} addTask={addTask}/>
+      <Tasks/>
     </div>
   );
 };
